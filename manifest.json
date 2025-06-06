@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "PhishScan",
+  "version": "1.0",
+  "description": "Extracts all URLs from the current page and checks for phishing risk",
+  "permissions": ["cookies","tabs","activeTab", "scripting","notifications","storage","identity","contextMenus"],
+  "host_permissions": ["<all_urls>","https://www.google-analytics.com/","*://mail.google.com/*","https://phishing-domain.titustanyf.workers.dev/"],
+  "background": {
+    "service_worker": "background.js",
+    "type":"module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>","*://mail.google.com/*"],
+      "js": ["tf.min.js","content.js"],
+      "type":"module"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [{
+    "resources":["model/model.json","model/group1-shard1of1.bin"],
+    "matches" : ["http://*/*", "https://*/*","*://mail.google.com/*"]
+}],
+  "icons":{
+    "16": "icon/icon.png"
+  },
+"oauth2": {
+    "client_id": "299059574177-3tsf7noabts8qeicvkvgrsf8ddlpfhd9.apps.googleusercontent.com", 
+    "scopes": ["email", "https://www.googleapis.com/auth/gmail.readonly"]
+  },
+
+"key":"MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCZGMIHTGcSVd3OVRihCicx3j9BFN2um2G99LhA2zkZesKXg8GLjmzTeUUfzSxNoR2yqoePg4lypCdn120Cu1JPlgE3GFDmIyuz5xfcuL/aR6hN6HkZArWc1t4mhBEXKQSd6oleRt4/Tjp8K21GWHwKCRLzCTuK9xQsNGnGfQC/Q+60jASGwcK0L+1H2m2APd9eZctSF1cbDY0iqEWOrnoGKoeKFQ4/TsaLqU8sQEB5gDBXEM8U3sU19ZWvZo+PuQU3rFtcUs4Zy7dvqKHfQxlLxiw2sD4uqnENmAFByBCzw8KWyW9lkGQaTqbs0MdHVYFWTnrlxr2VOzDNfUbDZFChAgMBAAECggEAF508AF2GiyDMz6X3NeUXr+zJ8O3uVkpdRIGEvMGTsxxo+281NqNx9xnTfFjspnoILKYlDBE2mC+TFxn2vzR0ORZi0EQN5mbdDNNuWNCeYbrVI6nh/pDua7ywvgbM5Az4S1YBI5Y8HaOhXcRiXIwKxeQpv2xYeieA6GNFQCUegmG+OuUqC8LlU/sxBGmG66iyDBNF60nB4l9JJ6/rlyYwuCJP6aPs624J7edu6RLXERhHIEJo5/VOFqjSK5KbPOnHlKPyLm7QpGB81O1uC/NKP3rRQPKwH9rx0DKxhlWrCrnyOvVj2CEIZ6GoDTitQI3SSekfNi2asOV6/7l5p67paQKBgQDRXxz/BwyNJuE9mwrBIZ/Vs69NlmzHMUtRRE9PWiV0AHp7/aO+Sjahbvo0CNgi9LnIcmEKyVJ9/9AJeTX14RlchZNZJosHD3EUjTrj1FLxnaLeYT8x5qLWLP8js5HOBx7zu8bH0KeXgTFdg2SFblGYiOYhu6BShZQBq9e9i7mS2wKBgQC7MUBdwfeq6y6D7H9tbsjGzoW/3gPPk46mmK1UGXF5i7bUuuR1Xrmh1GgB0UsJ8+ISYhcDBhXKaWow0Bx4zkmkt65e0l0dsEmNuk68rItF2Q/Rso/3vNWa93G0FMqhAfrwVDDTpGLM8+TSCs7PMkzbdF0XsUM3QDRuf1HLTX/dMwKBgQCmOu7pqG4Vr5XLdMpwFkMxx4zafCD3cbLL3gFeDkOIO00EHpgf4ApJ17O9FnyMHGNYuz9C8h6VvUIuE1d9VW/uXntjn89oFqGAYLUt6AjGnpKOHwWul+AXTfhwHwUXX936Q88KHCbDiiZoiYaIzdLo2WBlzfL3MekV/pq2ejYnWwKBgEH+liO325odefO2sCIjmZNFgi/nlM5cxkEDuK/anH/uetG65gpfD/D20og5gkwK+FvkyxoczhfjXDXDWRZaG+p/e3EglwV9fiECWvn3ls5UPVh/rHP51hDhRevoHJvw98g81k33OYHqRnSqrMitgh0ohB1zODBFaXa/WlXjh72zAoGAaCpN0MTNM9YGFxpj72+mkRzdsxm0TVcmRtD0sHF+x4rdKzmpRRd3wIKjMH9z0BBb6hnpWDURDok8yNyrJ36XL9BNc2f1TK/SPwbGlQssY+pBx4HXKvmHtLYVwiS3UMseWkfjlgOoAoyl1tD/8RG28g6sU3/+rCVcfvVSYFcS2U8=",
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

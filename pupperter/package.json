@@ -1,0 +1,17 @@
+{
+    "name": "puppeteer-docker",
+    "version": "1.0.0",
+    "description": "Run a sandbox",
+    "main": "analyze.js",
+    "scripts": {
+        "start": "node analyze.js"
+    },
+    "dependencies": {
+        "express": "^5.1.0",
+        "puppeteer": "^24.7.2"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "type": "module"
+}
